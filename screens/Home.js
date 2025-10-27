@@ -13,6 +13,7 @@ import {
 } from "react-native";
 import { useState } from "react";
 import SimpleSplashScreen from "../components/SplashScreen";
+import { Alert } from "react-native";
 
 export default function Home() {
   const [splashComplete, setSplashComplete] = useState(false);
@@ -22,15 +23,18 @@ export default function Home() {
 
   const handleRegistro = () => {
     if (!nombre || !email) {
-      alert("Por favor completa todos los campos");
+      Alert.alert("Error", "Por favor completa todos los campos");
       return;
     }
     if (!aceptarTerminos) {
-      alert("Debes aceptar los términos y condiciones");
+      Alert.alert(
+        "Términos no aceptados",
+        "Debes aceptar los términos y condiciones"
+      );
       return;
     }
     console.log({ nombre, email, aceptarTerminos });
-    alert(`¡Registrado! ${nombre}`);
+    Alert.alert("Registro exitoso", `Nombre: ${nombre}\nEmail: ${email}`);
   };
 
   return (
